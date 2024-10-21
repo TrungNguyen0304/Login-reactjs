@@ -1,0 +1,85 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Đặt chiều dọc cho các phần tử con */
+    align-items: center;
+    /* Căn giữa các phần tử theo chiều ngang */
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    /* Chọn phông chữ cho toàn bộ trang */
+    border-bottom: 2px solid white;
+    /* Viền chỉ ở dưới */
+    height: 100px;
+
+
+
+}
+
+.input-box input {
+    width: 400px;
+    padding: 10px; /* Padding cho input */
+    border: 1px solid #ccc; /* Đường viền nhạt */
+    border-radius: 4px; /* Bo góc cho input */
+    font-size: 16px; /* Kích thước chữ */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển màu đường viền */
+}
+
+.input-box input:focus {
+    border-color: #666; /* Đổi màu đường viền khi focus */
+    outline: none; /* Bỏ outline mặc định */
+}
+
+button {
+    justify-content: center;
+    width: 190px;
+    padding: 13px;
+    border: none;
+    background-color: #CC9900;
+    color: white;
+    border-radius: 20px;
+    font-size: 15px;
+    margin-top: 20px;
+    /* Khoảng cách trên nút */
+}
+
+
+
+.wrapper h1 {
+    font-size: 20px;
+    text-align: center;
+    color: #CC9900;
+    padding: 0px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid white;
+    /* Viền chỉ ở dưới */
+
+}
+
+.b1 {
+    text-align: center;
+
+
+}
+
+.input-box p {
+    color: #CC9900;
+    margin-bottom: 5px;
+    /* Khoảng cách giữa label và input */
+    font-weight: bold;
+    /* Làm cho văn bản đậm */
+}
+
+form {
+    width: 420px;
+    height: 290px;
+    border-bottom: 2px solid white; /* Viền chỉ ở dưới */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5), 0 2px 5px rgba(0, 0, 0, 0.3); /* Bóng chỉ ở dưới */
+    border-radius: 10px;
+}
+.input-box p {
+    text-align: left; /* Aligns text to the right */
+    color: #CC9900;
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Makes the text bold */
+}
