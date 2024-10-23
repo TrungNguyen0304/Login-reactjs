@@ -1,0 +1,39 @@
+.container1{
+    width: 60px;
+    background-color:  #CC9900;
+    height: 730px;
+    text-align: center;
+}
+
+
+
+
+.menu ul {
+    list-style-type: none;        /* Remove bullet points */
+   padding: 20px 20px 20px 15px;
+}
+
+.menu li {
+    margin: 20px 0;               /* Space between items */
+    display: flex;                /* Flexbox for icons and images */
+    align-items: center;          /* Center items vertically */
+}
+
+.menu li a {
+    color: #fff;                 /* Link color */
+    text-decoration: none;       /* Remove underline */
+    display: flex;              /* Flexbox for alignment */
+    align-items: center;         /* Center items vertically */
+    transition: color 0.3s;      /* Smooth color transition */
+
+}
+
+.menu li a:hover {
+    color: #f4d169;              /* Hover color */
+}
+
+.menu li img {
+    height: 30px;                /* Set height for images */
+    margin-right: 10px;          /* Space between image and icon */
+}
+

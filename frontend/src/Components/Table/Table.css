@@ -1,0 +1,35 @@
+/* styles.css */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders are merged */
+    margin: 20px 0;
+    font-size: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #CC9900; /* Add border to cells */
+}
+
+th {
+    background-color:#CC9900 ;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    color:black;
+}
+
+/* Style for no users message */
+tbody tr.no-users td {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}

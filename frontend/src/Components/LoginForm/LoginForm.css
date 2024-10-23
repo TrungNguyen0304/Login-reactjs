@@ -39,7 +39,7 @@ button {
     color: white;
     border-radius: 20px;
     font-size: 15px;
-    margin-top: 20px;
+
     /* Khoảng cách trên nút */
 }
 
@@ -58,7 +58,7 @@ button {
 
 .b1 {
     text-align: center;
-
+    margin-top: 20px;
 
 }
 
@@ -70,7 +70,7 @@ button {
     /* Làm cho văn bản đậm */
 }
 
-form {
+.formlogin {
     width: 420px;
     height: 290px;
     border-bottom: 2px solid white; /* Viền chỉ ở dưới */

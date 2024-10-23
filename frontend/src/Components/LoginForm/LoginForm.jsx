@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Khởi tạo useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Ngăn chặn reload trang
@@ -22,7 +24,8 @@ const LoginForm = () => {
 
       if (response.ok) {
         // Đăng nhập thành công
-        alert(data.message); // Hoặc chuyển hướng người dùng
+        alert(data.message); // Có thể thay thế bằng thông báo khác
+        navigate('/home'); // Sử dụng navigate để chuyển hướng
       } else {
         // Xử lý lỗi
         setErrorMessage(data.message);
@@ -34,14 +37,14 @@ const LoginForm = () => {
 
   return (
     <div className='wrapper'>
-      <form onSubmit={handleSubmit}>
+      <form className='formlogin' onSubmit={handleSubmit}>
         <h1>SE CONNECTER</h1>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <div className='input-box'> 
           <p>E-mail</p>
           <input
             type='text'
-            placeholder='Entrez I`email'
+            placeholder='Entrez l`email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
