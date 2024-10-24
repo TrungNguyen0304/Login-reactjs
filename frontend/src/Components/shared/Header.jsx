@@ -8,7 +8,13 @@ const Header = ({ isAuthenticated, onLogout }) => {
 
     const handleSearch = () => {
         if (searchQuery) {
-            window.location.href = `/search?civilite=${encodeURIComponent(searchQuery)}`;
+            window.location.href = `/search?lastname=${encodeURIComponent(searchQuery)}`;
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
         }
     };
 
@@ -44,9 +50,10 @@ const Header = ({ isAuthenticated, onLogout }) => {
                 <div className='search'>
                     <input
                         type="text"
-                        placeholder="Tìm kiếm civilité..."
+                        placeholder="Tìm kiếm lastname..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown} // Thêm sự kiện onKeyDown
                     />
                     <button onClick={handleSearch}>
                         <img src="/img/picto-rechercher.png" alt="" />

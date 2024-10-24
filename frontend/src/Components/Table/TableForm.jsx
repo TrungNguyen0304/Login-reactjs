@@ -27,6 +27,23 @@ const Table = () => {
         fetchUsers(); // Gọi hàm lấy dữ liệu
     }, []);
 
+    // Hàm để xóa người dùng
+    const deleteUser = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/users/${id}`, {
+                method: 'DELETE',
+                credentials: 'include', // Nếu bạn cần gửi cookie
+            });
+            if (!response.ok) {
+                throw new Error('Failed to delete user');
+            }
+            // Cập nhật danh sách người dùng sau khi xóa
+            setUsers(users.filter(user => user._id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div>
             <table>
@@ -39,12 +56,13 @@ const Table = () => {
                         <th>Maison</th>
                         <th>Groupe de droits</th>
                         <th>Dernière connexion</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {loading ? ( // Kiểm tra trạng thái tải
                         <tr>
-                            <td colSpan="7">Loading...</td>
+                            <td colSpan="8">Loading...</td>
                         </tr>
                     ) : users.length > 0 ? ( // Kiểm tra nếu có người dùng
                         users.map(user => (
@@ -56,11 +74,14 @@ const Table = () => {
                                 <td>{user.maison}</td>
                                 <td>{user.droitGroupe}</td>
                                 <td>{user.lastConnection ? new Date(user.lastConnection).toLocaleString() : 'Chưa bao giờ'}</td>
+                                <td>
+                                    <button onClick={() => deleteUser(user._id)}>Delete</button>
+                                </td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="7">Aucun utilisateur à afficher</td>
+                            <td colSpan="8">Aucun utilisateur à afficher</td>
                         </tr>
                     )}
                 </tbody>

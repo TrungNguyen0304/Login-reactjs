@@ -12,17 +12,17 @@
 
         useEffect(() => {
             const params = new URLSearchParams(window.location.search);
-            const civilite = params.get('civilite');
+            const lastname = params.get('lastname');
 
-            if (civilite) {
-                setQuery(civilite);
-                fetchUsers(civilite);
+            if (lastname) {
+                setQuery(lastname);
+                fetchUsers(lastname);
             }
         }, []);
 
-        const fetchUsers = async (civilite) => {
+        const fetchUsers = async (lastname) => {
             try {
-                const response = await fetch(`http://localhost:8000/api/users/search?civilite=${encodeURIComponent(civilite)}`);
+                const response = await fetch(`http://localhost:8000/api/users/search?lastname=${encodeURIComponent(lastname)}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

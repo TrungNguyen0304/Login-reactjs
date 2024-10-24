@@ -3,11 +3,10 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
-import { registerUser, loginUser, getUsers } from "./controllers/user.controller.js"; // Import logoutUser
-import { create } from "./controllers/create.js"
-import { authenticateUser } from "./Middleware/authMiddleware.js"; // Import middleware
-import { searchUsers } from "./controllers/seach.js"
-
+import { registerUser, loginUser, getUsers, deleteUser } from "./controllers/user.controller.js";
+import { create } from "./controllers/create.js";
+import { authenticateUser } from "./Middleware/authMiddleware.js";
+import { searchUsers } from "./controllers/seach.js";
 
 dotenv.config();
 
@@ -33,8 +32,11 @@ app.post('/api/register', registerUser);
 // Đăng nhập
 app.post('/api/login', loginUser);
 
+// Tạo
 app.post('/api/create', create);
 
+// Xóa người dùng (sửa phương thức từ POST thành DELETE)
+app.delete('/api/users/:id', deleteUser); // Chú ý rằng ID người dùng sẽ được truyền qua params
 
 // Lấy danh sách người dùng
 app.get('/api/users', getUsers);
@@ -45,6 +47,7 @@ app.get('/api/users/search', searchUsers); // Đường dẫn đã sửa cho đ�
 app.get('/Home', authenticateUser, (req, res) => {
     res.status(200).json({ message: 'Welcome to the Home page!', user: req.user });
 });
+
 // Kết nối đến MongoDB và khởi động server
 connectDB().then(() => {
     app.listen(PORT, () => {

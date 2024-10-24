@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import Sibader from '../shared/Sidebar';
 import './CreateTable.css';
 
@@ -14,7 +14,7 @@ const CreateTable = () => {
         password: ''
     });
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,16 +36,15 @@ const CreateTable = () => {
             });
             
             if (response.ok) {
-                // User created successfully, redirect to Home
-                navigate('/User'); // Update with your actual home route
+                navigate('/User');
             } else {
                 const data = await response.json();
                 console.error(data.message);
-                alert(data.message); // Show an error message if needed
+                alert(data.message);
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred. Please try again.'); // Handle any other errors
+            alert('An error occurred. Please try again.');
         }
     };
 
@@ -107,13 +106,16 @@ const CreateTable = () => {
                     </div>
                     <div>
                         <label>Droit Groupe:</label>
-                        <input
-                            type="text"
+                        <select
                             name="droitGroupe"
                             value={userData.droitGroupe}
                             onChange={handleChange}
                             required
-                        />
+                        >
+                            <option value="" disabled>Select Role</option>
+                            <option value="Membre">Membre</option>
+                            <option value="Administrateur">Administrateur</option>
+                        </select>
                     </div>
                     <div>
                         <label>Mot de passe:</label>

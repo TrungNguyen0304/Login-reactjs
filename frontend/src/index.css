@@ -223,7 +223,8 @@ header {
   border: 1px solid #f2dfa6;
   outline: none;
   flex: 1;
-  height: 30px;
+  height: 40px;
+ 
 }
 
 .search {
@@ -242,6 +243,7 @@ header {
   /* Remove margin for no space */
   flex: 1;
   /* Allow input to take available space */
+  border-radius: 20px;
 }
 
 .search button {

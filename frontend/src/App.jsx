@@ -39,15 +39,15 @@ function App() {
     },
     {
       path: '/CreateTable',
-      element: <CreateTable />,
+      element: !isAuthenticated ? <Navigate to="/" /> : <CreateTable />,
     },
     {
       path: '/search',
-      element: <SearchPage />,
+      element: !isAuthenticated ? <Navigate to="/" /> : <SearchPage />,
     },
     {
       path: '/User',
-      element: <IndexUser />,
+      element: !isAuthenticated ? <Navigate to="/" /> : <IndexUser />,
     },
   ]);
 

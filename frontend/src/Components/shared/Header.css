@@ -44,3 +44,26 @@
 .logout-button:hover {
     background-color: #f0f0f0; /* Change background on hover */
 }
+
+
+
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.search button {
+    position: absolute;
+    right: 0px; /* Căn chỉnh nút ở bên phải */
+    border: none;
+    background: transparent; /* Nền trong suốt */
+    cursor: pointer;
+}
+
+.search button img {
+    width: 20px; /* Đặt kích thước cho hình ảnh */
+    height: 20px;
+}
