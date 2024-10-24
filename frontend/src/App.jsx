@@ -50,9 +50,10 @@ function App() {
       element: <SearchPage  />,
     },
     {
-      path: '/indexUser',
+      path: '/User',
       element: <IndexUser />,
     },
+ 
   ]);
 
   return (
