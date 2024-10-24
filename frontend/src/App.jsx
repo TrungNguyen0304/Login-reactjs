@@ -7,6 +7,7 @@ import CreateTable from './Components/Table/CreateTable';
 import Header from './Components/shared/Header';
 import SearchPage from './Components/admin/SearchPage';
 import IndexUser from './Components/admin/user/IndexUser';
+import UpdateTable from './Components/Table/UpdateTable';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -40,6 +41,10 @@ function App() {
     {
       path: '/CreateTable',
       element: !isAuthenticated ? <Navigate to="/" /> : <CreateTable />,
+    },
+    {
+      path: '/UpdateTable/:id', // Thay đổi đường dẫn để nhận ID
+      element: !isAuthenticated ? <Navigate to="/" /> : <UpdateTable />,
     },
     {
       path: '/search',

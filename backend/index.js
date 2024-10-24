@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import { registerUser, loginUser, getUsers, deleteUser } from "./controllers/user.controller.js";
 import { create } from "./controllers/create.js";
+import { update } from "./controllers/update.js";
 import { authenticateUser } from "./Middleware/authMiddleware.js";
 import { searchUsers } from "./controllers/seach.js";
 
@@ -32,16 +33,22 @@ app.post('/api/register', registerUser);
 // Đăng nhập
 app.post('/api/login', loginUser);
 
-// Tạo
+// Tạo người dùng mới
 app.post('/api/create', create);
 
-// Xóa người dùng (sửa phương thức từ POST thành DELETE)
-app.delete('/api/users/:id', deleteUser); // Chú ý rằng ID người dùng sẽ được truyền qua params
+// Cập nhật thông tin người dùng
+app.put('/api/users/:id', update); // Thêm route cho cập nhật người dùng
+// app.get('/api/users/:id', getUserById);
+
+
+// Xóa người dùng
+app.delete('/api/users/:id', deleteUser); // ID người dùng sẽ được truyền qua params
 
 // Lấy danh sách người dùng
 app.get('/api/users', getUsers);
 
-app.get('/api/users/search', searchUsers); // Đường dẫn đã sửa cho đúng
+// Tìm kiếm người dùng
+app.get('/api/users/search', searchUsers); 
 
 // Route bảo vệ trang Home
 app.get('/Home', authenticateUser, (req, res) => {

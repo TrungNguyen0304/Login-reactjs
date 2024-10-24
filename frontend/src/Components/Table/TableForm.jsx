@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Table.css';
 
 const Table = () => {
-    const [users, setUsers] = useState([]); // Khởi tạo state để lưu danh sách người dùng
-    const [loading, setLoading] = useState(true); // Khởi tạo state để theo dõi trạng thái tải
+    const [users, setUsers] = useState([]); // State to store user list
+    const [loading, setLoading] = useState(true); // State to track loading
+    const navigate = useNavigate(); // useNavigate for navigation
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const response = await fetch('http://localhost:8000/api/users', {
                     method: 'GET',
-                    credentials: 'include', // Nếu bạn cần gửi cookie
+                    credentials: 'include', // Include credentials if needed
                 });
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
                 const data = await response.json();
-                setUsers(data); // Lưu dữ liệu vào state
+                setUsers(data); // Set user data
             } catch (error) {
                 console.error(error);
             } finally {
-                setLoading(false); // Kết thúc trạng thái tải
+                setLoading(false); // End loading state
             }
         };
 
-        fetchUsers(); // Gọi hàm lấy dữ liệu
+        fetchUsers(); // Fetch users on component mount
     }, []);
 
-    // Hàm để xóa người dùng
+    // Function to delete a user
     const deleteUser = async (id) => {
         try {
             const response = await fetch(`http://localhost:8000/api/users/${id}`, {
                 method: 'DELETE',
-                credentials: 'include', // Nếu bạn cần gửi cookie
+                credentials: 'include', // Include credentials if needed
             });
             if (!response.ok) {
                 throw new Error('Failed to delete user');
             }
-            // Cập nhật danh sách người dùng sau khi xóa
+            // Update user list after deletion
             setUsers(users.filter(user => user._id !== id));
         } catch (error) {
             console.error(error);
@@ -60,14 +62,16 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {loading ? ( // Kiểm tra trạng thái tải
+                    {loading ? (
                         <tr>
                             <td colSpan="8">Loading...</td>
                         </tr>
-                    ) : users.length > 0 ? ( // Kiểm tra nếu có người dùng
+                    ) : users.length > 0 ? (
                         users.map(user => (
                             <tr key={user._id}>
-                                <td>{user.civilite}</td>
+                                <td onClick={() => navigate(`/UpdateTable/${user._id}`)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+                                    {user.civilite}
+                                </td>
                                 <td>{user.lastname}</td>
                                 <td>{user.firstname}</td>
                                 <td>{user.email}</td>
