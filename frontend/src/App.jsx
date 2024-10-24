@@ -7,6 +7,7 @@ import { useState } from 'react';
 import CreateTable from './Components/Table/CreateTable';
 import Header from './Components/shared/Header';
 import SearchPage from './Components/admin/SearchPage';
+import IndexUser from './Components/admin/user/IndexUser';
 
 function App() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false); // Quản lý trạng thái xác thực
@@ -47,6 +48,10 @@ function App() {
     {
       path: '/search',
       element: <SearchPage  />,
+    },
+    {
+      path: '/indexUser',
+      element: <IndexUser />,
     },
   ]);
 

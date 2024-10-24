@@ -13,7 +13,7 @@ const Sibader = () => {
                         <a href="#"><img src="/img/mask-group-8@2x.png" alt="" /></a>
                     </li>
                     <li>
-                        <a href="#home"><MdHome style={{ fontSize: '30px' }} /></a>
+                        <a href="indexUser"><MdHome style={{ fontSize: '30px' }} /></a>
                     </li>
                     <li>
                         <a href="#"><img src="/img/mask-group-8-2@2x.png" alt="" /></a>
