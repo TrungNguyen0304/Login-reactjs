@@ -1,67 +1,60 @@
 import './App.css';
-import { FaUserCircle } from "react-icons/fa";
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './Components/admin/Home';
 import LoginForm from './Components/LoginForm/LoginForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateTable from './Components/Table/CreateTable';
 import Header from './Components/shared/Header';
 import SearchPage from './Components/admin/SearchPage';
 import IndexUser from './Components/admin/user/IndexUser';
 
 function App() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false); // Quản lý trạng thái xác thực
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Kiểm tra localStorage để lấy trạng thái xác thực
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', 'true'); // Lưu trạng thái xác thực vào localStorage
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('isAuthenticated'); // Xóa trạng thái xác thực từ localStorage
+  };
 
   const appRouter = createBrowserRouter([
-    // {
-    //   path: '/Home',
-    //   element: isAuthenticated ? <Home /> : <Navigate to="/" />, // Chuyển hướng nếu chưa xác thực
-    // },
-    // {
-    //   path: '/LoginForm',
-    //   element: !isAuthenticated ? <LoginForm onLogin={() => setIsAuthenticated(true)} /> : <Navigate to="/Home" />, // Nếu đã xác thực, chuyển hướng đến Home
-    // },
-    // {
-    //   path: '/',
-    //   element: !isAuthenticated ? <LoginForm onLogin={() => setIsAuthenticated(true)} /> : <Navigate to="/Home" />, // Nếu đã xác thực, chuyển hướng đến Home
-    // },
-    // {
-    //   path: '/CreateTable',
-    //   element: <CreateTable />,
-    // },
+    {
+      path: '/Home',
+      element: !isAuthenticated ? <Navigate to="/" /> : <Home />,
+    },
+    {
+      path: '/LoginForm',
+      element: isAuthenticated ? <Navigate to="/Home" /> : <LoginForm onLogin={handleLogin} />,
+    },
+    {
+      path: '/',
+      element: isAuthenticated ? <Navigate to="/Home" /> : <LoginForm onLogin={handleLogin} />,
+    },
     {
       path: '/CreateTable',
       element: <CreateTable />,
     },
     {
-      path: '/',
-      element: <LoginForm />,
-    },
-    {
-      path: '/Home',
-      element: <Home />,
-    },
-    {
-      path: '/LoginForm',
-      element: <LoginForm />,
-    },
-    {
       path: '/search',
-      element: <SearchPage  />,
+      element: <SearchPage />,
     },
     {
       path: '/User',
       element: <IndexUser />,
     },
- 
   ]);
 
   return (
     <>
-     
-    
       <div>
-      <Header/>
+        <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
         <RouterProvider router={appRouter} />
       </div>
     </>

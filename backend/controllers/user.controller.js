@@ -1,5 +1,7 @@
 import { User } from "../models/user.js";
 import bcrypt from "bcryptjs";
+import jwt from 'jsonwebtoken'; // Để tạo token JWT
+
 
 // Đăng ký người dùng mới
 export const registerUser = async (req, res) => {
@@ -48,10 +50,16 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
+        // Tạo token JWT
+        const token = jwt.sign({ _id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        // Lưu token vào cookie
+        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+
         // Phản hồi người dùng
         res.status(200).json({
             message: 'Login successful',
-            redirectUrl: '/Home', // Đường dẫn đến trang bạn muốn chuyển hướng
+            redirectUrl: '/Home',
             user: { _id: user._id, fullname: user.fullname, email: user.email }
         });
     } catch (error) {

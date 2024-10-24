@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -25,7 +25,8 @@ const LoginForm = () => {
       if (response.ok) {
         // Đăng nhập thành công
         alert(data.message); // Có thể thay thế bằng thông báo khác
-        navigate('/home'); // Sử dụng navigate để chuyển hướng
+        onLogin(); // Gọi hàm onLogin để cập nhật trạng thái xác thực
+        navigate('/Home'); // Chuyển hướng đến trang Home
       } else {
         // Xử lý lỗi
         setErrorMessage(data.message);
@@ -61,7 +62,7 @@ const LoginForm = () => {
           />
         </div>
         <div className='b1'>
-          <button type='submit'>SE CONNECTER</button>
+          <button className='login-button' type='submit'>SE CONNECTER</button>
         </div>
       </form>
     </div>

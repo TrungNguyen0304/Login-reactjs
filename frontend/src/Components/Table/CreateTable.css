@@ -44,7 +44,7 @@ input:focus {
     outline: none;
 }
 
-button {
+.Create-button {
     padding: 10px;
     background-color: #CC9900;
     color: white;
@@ -54,6 +54,6 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.Create-button button:hover {
     background-color: #b58a00;
 }

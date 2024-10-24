@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.search input {
+    padding: 5px;
+}
+
+.search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    position: relative; /* Make this relative for absolute positioning of dropdown */
+}
+
+.dropdown {
+    position: absolute; /* Position it absolutely relative to the icon */
+    top: 40px; /* Adjust as needed to position it below the icon */
+    right: 0; /* Align it to the right */
+    background-color: white; /* Background color of dropdown */
+    border: 1px solid #ccc; /* Optional border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.logout-button {
+    padding: 10px 20px; /* Add padding for the button */
+    background: none; /* Background color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.logout-button:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}

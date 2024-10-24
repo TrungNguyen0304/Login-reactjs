@@ -37,7 +37,7 @@ const CreateTable = () => {
             
             if (response.ok) {
                 // User created successfully, redirect to Home
-                navigate('/home'); // Update with your actual home route
+                navigate('/User'); // Update with your actual home route
             } else {
                 const data = await response.json();
                 console.error(data.message);
@@ -125,7 +125,7 @@ const CreateTable = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Créer Utilisateur</button>
+                    <button className='Create-button' type="submit">Créer Utilisateur</button>
                 </form>
             </div>
         </div>

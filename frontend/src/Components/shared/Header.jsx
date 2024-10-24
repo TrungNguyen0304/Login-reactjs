@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUserCircle } from "react-icons/fa";
+import './Header.css';
 
-const Header = () => {
+const Header = ({ isAuthenticated, onLogout }) => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [showLogout, setShowLogout] = useState(false);
 
     const handleSearch = () => {
         if (searchQuery) {
-            // Only search by civilite
             window.location.href = `/search?civilite=${encodeURIComponent(searchQuery)}`;
         }
     };
 
+    const handleLogout = () => {
+        onLogout();
+        setShowLogout(false);
+    };
+
+    const toggleLogoutVisibility = () => {
+        setShowLogout(prev => !prev);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (showLogout && !event.target.closest('.icon')) {
+                setShowLogout(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showLogout]);
+
     return (
         <div className='container'>
             <div className='logo'>
-                <a href="/Home">
-                    <img src="/img/premium-logo-black@3x.png" alt="Logo" />
-                </a>
+                <img src="/img/premium-logo-black@3x.png" alt="Logo" />
             </div>
 
             <div className='right-section'>
@@ -26,12 +47,6 @@ const Header = () => {
                         placeholder="Tìm kiếm civilité..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        style={{
-                            padding: '5px',
-                            borderRadius: '5px',
-                            border: '1px solid #CC9900',
-                            outline: 'none',
-                        }}
                     />
                     <button onClick={handleSearch}>
                         <img src="/img/picto-rechercher.png" alt="" />
@@ -41,10 +56,17 @@ const Header = () => {
                     <img src="/img/fr@2x.png" alt="" />
                     <p>Francais</p>
                 </div>
-                <div className='icon'>
-                    <a href="/LoginForm" style={{ textDecoration: 'none' }}>
+                <div className='icon' style={{ position: 'relative' }}>
+                    <a href="#" onClick={toggleLogoutVisibility} style={{ textDecoration: 'none' }}>
                         <FaUserCircle style={{ fontSize: '30px', marginLeft: '10px', color: '#CC9900' }} />
                     </a>
+                    {showLogout && isAuthenticated && (
+                        <div className="dropdown">
+                            <button onClick={handleLogout} className="logout-button">
+                                Đăng xuất
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

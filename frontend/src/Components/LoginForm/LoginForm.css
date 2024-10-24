@@ -30,7 +30,7 @@
     outline: none; /* Bỏ outline mặc định */
 }
 
-button {
+.login-button {
     justify-content: center;
     width: 190px;
     padding: 13px;
