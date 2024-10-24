@@ -4,8 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import { registerUser, loginUser, getUsers } from "./controllers/user.controller.js"; // Import logoutUser
-import {create} from "./controllers/create.js" 
+import { create } from "./controllers/create.js"
 import { authenticateUser } from "./Middleware/authMiddleware.js"; // Import middleware
+import { searchUsers } from "./controllers/seach.js"
 
 
 dotenv.config();
@@ -38,6 +39,7 @@ app.post('/api/create', create);
 // Lấy danh sách người dùng
 app.get('/api/users', getUsers);
 
+app.get('/api/users/search', searchUsers); // Đường dẫn đã sửa cho đúng
 
 // Route bảo vệ trang Home
 app.get('/Home', authenticateUser, (req, res) => {

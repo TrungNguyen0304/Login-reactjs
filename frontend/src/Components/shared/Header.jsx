@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { FaUserCircle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+
 const Header = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = () => {
+        if (searchQuery) {
+            // Only search by civilite
+            window.location.href = `/search?civilite=${encodeURIComponent(searchQuery)}`;
+        }
+    };
+
     return (
         <div className='container'>
             <div className='logo'>
-                <Link to="/Home">
+                <a href="/Home">
                     <img src="/img/premium-logo-black@3x.png" alt="Logo" />
-                </Link>
+                </a>
             </div>
 
             <div className='right-section'>
                 <div className='search'>
                     <input
                         type="text"
-                        placeholder="Tìm kiếm..."
+                        placeholder="Tìm kiếm civilité..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         style={{
                             padding: '5px',
                             borderRadius: '5px',
@@ -22,7 +33,7 @@ const Header = () => {
                             outline: 'none',
                         }}
                     />
-                    <button onClick={() => { /* Thêm chức năng tìm kiếm ở đây */ }}>
+                    <button onClick={handleSearch}>
                         <img src="/img/picto-rechercher.png" alt="" />
                     </button>
                 </div>
@@ -37,7 +48,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
