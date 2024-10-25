@@ -12,24 +12,35 @@ const SearchPage = () => {
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const lastname = params.get('lastname');
+        const firstname = params.get('firstname');
 
-        if (lastname) {
-            setQuery(lastname);
-            fetchUsers(lastname);
+        if (firstname) {
+            setQuery(firstname);
+            fetchUsers(firstname);
         }
     }, []);
 
-    const fetchUsers = async (lastname) => {
+    const fetchUsers = async (firstname) => {
+        setLoading(true); // Bắt đầu trạng thái tải
         try {
-            const response = await fetch(`http://localhost:8000/api/users/search?lastname=${encodeURIComponent(lastname)}`);
+            const response = await fetch('http://localhost:8000/api/users/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ firstname }) // Gửi firstname trong body
+            });
+
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json(); // Lấy thông tin lỗi từ phản hồi
+                throw new Error(errorData.message || 'Network response was not ok');
             }
+
             const data = await response.json();
             setUsers(data);
         } catch (error) {
             console.error('Lỗi khi lấy dữ liệu:', error);
+            alert('Đã xảy ra lỗi khi lấy dữ liệu: ' + error.message); // Hiển thị thông báo lỗi cho người dùng
         } finally {
             setLoading(false); // Kết thúc trạng thái tải
         }
@@ -45,7 +56,7 @@ const SearchPage = () => {
                         <span className="large-text">Recherche</span>
                         <span> {'>'} </span>
                         <span className="faded-text">
-                        Résultat</span>
+                            Résultat</span>
                     </div>
                 </div>
                 <div className="right-text">

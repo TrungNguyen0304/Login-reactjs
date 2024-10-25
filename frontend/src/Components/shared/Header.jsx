@@ -8,7 +8,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
 
     const handleSearch = () => {
         if (searchQuery) {
-            window.location.href = `/search?lastname=${encodeURIComponent(searchQuery)}`;
+            window.location.href = `/search?firstname=${encodeURIComponent(searchQuery)}`;
         }
     };
 
@@ -50,15 +50,15 @@ const Header = ({ isAuthenticated, onLogout }) => {
                 <div className='search'>
                     <input
                         type="text"
-                        placeholder="Tìm kiếm lastname..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Nhập Nom để tìm kiếm"
                         onKeyDown={handleKeyDown} // Thêm sự kiện onKeyDown
                     />
                     <button onClick={handleSearch}>
-                        <img src="/img/picto-rechercher.png" alt="" />
+                        <img src="/img/picto-rechercher.png" alt="Tìm kiếm" />
                     </button>
-                </div>
+                </div>  
                 <div className='fr'>
                     <img src="/img/fr@2x.png" alt="" />
                     <p>Francais</p>

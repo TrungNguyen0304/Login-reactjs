@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
-import { registerUser, loginUser, getUsers, deleteUser } from "./controllers/user.controller.js";
+import { registerUser, loginUser, getUsers, deleteUser,getUserById } from "./controllers/user.controller.js";
 import { create } from "./controllers/create.js";
 import { update } from "./controllers/update.js";
 import { authenticateUser } from "./Middleware/authMiddleware.js";
@@ -38,8 +38,10 @@ app.post('/api/create', create);
 
 // Cập nhật thông tin người dùng
 app.put('/api/users/:id', update); // Thêm route cho cập nhật người dùng
-// app.get('/api/users/:id', getUserById);
+app.get('/api/users/:id', getUserById);
 
+// Tìm kiếm người dùng
+app.post('/api/users/search', searchUsers);
 
 // Xóa người dùng
 app.delete('/api/users/:id', deleteUser); // ID người dùng sẽ được truyền qua params
@@ -47,8 +49,6 @@ app.delete('/api/users/:id', deleteUser); // ID người dùng sẽ được tru
 // Lấy danh sách người dùng
 app.get('/api/users', getUsers);
 
-// Tìm kiếm người dùng
-app.get('/api/users/search', searchUsers); 
 
 // Route bảo vệ trang Home
 app.get('/Home', authenticateUser, (req, res) => {

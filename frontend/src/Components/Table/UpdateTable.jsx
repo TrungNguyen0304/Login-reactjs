@@ -4,7 +4,7 @@ import Sibader from '../shared/Sidebar';
 import './CreateTable.css';
 
 const UpdateTable = () => {
-    const { id } = useParams(); // Lấy ID người dùng từ URL
+    const { id } = useParams(); // Get user ID from URL
     const [userData, setUserData] = useState({
         civilite: '',
         lastname: '',
@@ -17,14 +17,14 @@ const UpdateTable = () => {
 
     const navigate = useNavigate();
 
-    // Lấy dữ liệu người dùng khi component mount
+    // Fetch user data when component mounts or id changes
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/api/users/${id}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setUserData(data.user); // Giả sử phản hồi có một đối tượng user
+                    setUserData(data.user); // Assume the response contains a user object
                 } else {
                     console.error('Failed to fetch user data');
                     alert('Error fetching user data');
@@ -36,29 +36,29 @@ const UpdateTable = () => {
         };
 
         fetchUserData();
-    }, [id]);
+    }, [id]); // Re-run effect if id changes
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUserData({
-            ...userData,
+        setUserData((prevData) => ({
+            ...prevData,
             [name]: value
-        });
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch(`http://localhost:8000/api/users/${id}`, {
-                method: 'PUT', // Sử dụng PUT để cập nhật
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userData) // Gửi dữ liệu cần thiết
+                body: JSON.stringify(userData)
             });
             
             if (response.ok) {
-                navigate('/User'); // Chuyển hướng sau khi cập nhật thành công
+                navigate('/User'); // Redirect after successful update
             } else {
                 const data = await response.json();
                 console.error(data.message);
