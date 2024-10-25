@@ -52,7 +52,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Nhập Nom để tìm kiếm"
+                        placeholder="Nhập Prénom để tìm kiếm"
                         onKeyDown={handleKeyDown} // Thêm sự kiện onKeyDown
                     />
                     <button onClick={handleSearch}>

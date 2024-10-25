@@ -69,7 +69,7 @@ const Table = () => {
                     ) : users.length > 0 ? (
                         users.map(user => (
                             <tr key={user._id}>
-                                <td onClick={() => navigate(`/UpdateTable/${user._id}`)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+                                <td className="clickable" onClick={() => navigate(`/UpdateTable/${user._id}`)}>
                                     {user.civilite}
                                 </td>
                                 <td>{user.lastname}</td>
@@ -79,7 +79,7 @@ const Table = () => {
                                 <td>{user.droitGroupe}</td>
                                 <td>{user.lastConnection ? new Date(user.lastConnection).toLocaleString() : 'Chưa bao giờ'}</td>
                                 <td>
-                                    <button onClick={() => deleteUser(user._id)}>Delete</button>
+                                    <button className='deletebutton' onClick={() => deleteUser(user._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))

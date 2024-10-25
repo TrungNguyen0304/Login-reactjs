@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Table.css';
 
 const TableSeach = ({ users }) => {
+    const navigate = useNavigate(); // Initialize the navigate function
+
     return (
         <table>
             <thead>
@@ -19,7 +22,12 @@ const TableSeach = ({ users }) => {
                 {users.length > 0 ? (
                     users.map(user => (
                         <tr key={user._id}>
-                            <td>{user.civilite}</td>
+                           <td 
+                                className="clickable" // Use the clickable class
+                                onClick={() => navigate(`/UpdateTable/${user._id}`)}
+                            >
+                                {user.civilite}
+                            </td>
                             <td>{user.lastname}</td>
                             <td>{user.firstname}</td>
                             <td>{user.email}</td>
