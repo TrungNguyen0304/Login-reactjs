@@ -3,7 +3,7 @@ import { MdOutlineAddCircle } from "react-icons/md";
 import { FaUserTag } from "react-icons/fa6";
 import { Link } from 'react-router-dom'; // Import Link if using React Router
 import Table from '@/Components/Table/TableForm';
-import Sibader from '@/Components/shared/Sidebar';
+import Sibader from '@/Components/inc/Sidebar';
 
 const IndexUser = () => {
     return (

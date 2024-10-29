@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../shared/sidebar';
+import Sidebar from '../inc/sidebar';
 import { MdOutlineAddCircle } from "react-icons/md";
 import TableSeach from '../Table/TableSeach';
 import { FaUserTag } from "react-icons/fa6";

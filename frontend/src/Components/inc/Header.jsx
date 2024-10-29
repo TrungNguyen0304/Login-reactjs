@@ -43,7 +43,8 @@ const Header = ({ isAuthenticated, onLogout }) => {
     return (
         <div className='container'>
             <div className='logo'>
-                <img src="/img/premium-logo-black@3x.png" alt="Logo" />
+                <a href="/home"> <img src="/img/premium-logo-black@3x.png" alt="Logo" /></a>
+
             </div>
 
             <div className='right-section'>
@@ -58,7 +59,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
                     <button onClick={handleSearch}>
                         <img src="/img/picto-rechercher.png" alt="Tìm kiếm" />
                     </button>
-                </div>  
+                </div>
                 <div className='fr'>
                     <img src="/img/fr@2x.png" alt="" />
                     <p>Francais</p>

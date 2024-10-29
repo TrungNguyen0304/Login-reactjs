@@ -79,7 +79,8 @@ const Table = () => {
                                 <td>{user.droitGroupe}</td>
                                 <td>{user.lastConnection ? new Date(user.lastConnection).toLocaleString() : 'Chưa bao giờ'}</td>
                                 <td>
-                                    <button className='deletebutton' onClick={() => deleteUser(user._id)}>Delete</button>
+                                    <div className='delete'><button className='deletebutton' onClick={() => deleteUser(user._id)}>Delete</button></div>
+
                                 </td>
                             </tr>
                         ))

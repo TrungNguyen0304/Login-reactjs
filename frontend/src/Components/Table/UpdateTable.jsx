@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Sibader from '../shared/Sidebar';
+import Sibader from '../inc/Sidebar';
 import './CreateTable.css';
 
 const UpdateTable = () => {

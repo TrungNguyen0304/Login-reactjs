@@ -1,4 +1,4 @@
-import { User } from '../models/user.js'; // Import mô hình User
+import { User } from '../../models/user.js'; // Import mô hình User
 
 export const searchUsers = async (req, res) => {
     try {

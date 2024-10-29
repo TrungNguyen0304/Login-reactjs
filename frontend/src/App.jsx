@@ -1,10 +1,10 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './Components/admin/Home';
-import LoginForm from './Components/LoginForm/LoginForm';
+import LoginForm from './Components/auth/LoginForm/LoginForm';
 import { useEffect, useState } from 'react';
 import CreateTable from './Components/Table/CreateTable';
-import Header from './Components/shared/Header';
+import Header from './Components/inc/Header';
 import SearchPage from './Components/admin/SearchPage';
 import IndexUser from './Components/admin/user/IndexUser';
 import UpdateTable from './Components/Table/UpdateTable';
